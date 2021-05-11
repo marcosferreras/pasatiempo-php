@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<link href="estilos.css" rel="stylesheet" type="text/css" />
+<script src="funciones.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pasatiempo en cascada</title>
+    <link rel="icon" href="resources/favicon.ico" type="image/x-icon" />
+</head>
+<header class=common>
+    <h1>Pasatiempo En Cascada</h1>
+</header>
+
+<body class=common onload="inicializar()">
+
+
+
+    <hr>
+    <div class="principal"> 
+    <table id="tabla_layout">
+        <tr>
+            <td id="celda_pasatiempo">
+                <div id=pasatiempo>
+
+                </div>
+            </td>
+            <td>
+                <div id="divDerecha">
+                    <div id="infoPistas">
+                        <h2>Pistas</h2>
+                        <ol>
+                            <li id="pista1"></li>
+                            <li id="pista2"></li>
+                            <li id="pista3"></li>
+                            <li id="pista4"></li>
+
+                        </ol>
+                    </div>
+                    <div id=pedirPista>
+                        <h2>
+                            ¿Necesitas ayuda?
+                        </h2>
+                        <p>Puedes pedir hasta 3 pistas. Se mostraran todas aquellas palabras
+                            que como mínimo contengan las letras introducidas.
+                        </p>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="text" maxlength="6" id="ayuda">
+                                    <button id="btnSearch" class="btn" onclick="ayuda()">🔎</button>
+                                </td>
+                                <td>
+                                    <div id=avisosPista>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+                <textarea id="pistas" readonly>
+
+                </textarea>
+                <div id="pistasRestantes">
+                    Quedan 3 pistas
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td id="guardado_borrado">
+                <div>
+                    
+                    <label class="switch">
+                        <input id="localStorage" onchange="gestionarGuardado()" type="checkbox">
+                        <span class="slider round">
+                        </span>
+                    </label>
+                    Guardar progreso automáticamente
+                    <button class="btn" onclick="comprobarPasatiempo()">✔️ Comprobar pasatiempo</button>
+                    
+                </div>
+            </td>
+            <td>
+                    <button class="btn" id="btnVaciar" onclick="reiniciarPasatiempo()">🗑️ Reiniciar pasatiempo</button>
+            </td>
+        </tr>
+        
+    </table>
+    </div>
+
+    <hr>
+    <div id="instrucciones">
+        <h2>Instrucciones</h2>
+        Identifique la primera palabra y la última de cada bloque con las pistas que se dan.
+        A continuación, trate de descubrir las palabras intermedias. Para lograrlo, cambie una
+        letra de la primera palabra para obtener la próxima y, después, altere el orden de una o
+        varias letras para encontrar la siguiente. Siga así, sucesivamente, hasta que logre
+        completar ambos casileros. Todas las palabras intermedias deben tener significado.
+    </div>
+    </div>
+
+    <div class="emergente">
+        <p>Seleccione dificultad del pasatiempo: </p>
+        <div class="boton_selector" onclick="seleccionarPasatiempo(event)">Principiante</div>
+        <div class="boton_selector" onclick="seleccionarPasatiempo(event)">Experto</div>
+        <div class="boton_selector" onclick="seleccionarPasatiempo(event)">Leyenda</div>
+    </div>
+</body>
+<footer>
+
+    <div class="footer">
+        <p>© 2021 Marcos Ferreras Rodriguez</p> <br>
+    </div>
+
+
+</footer>

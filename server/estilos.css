@@ -1,0 +1,331 @@
+.common {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header {
+    background-color: #f05945;
+    color: #f7f3e9;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 55px;
+}
+
+header>h1 {
+    font-style: italic;
+    font-size: 40px;
+}
+
+hr {
+    background-color: #5eaaa8;
+    height: 10px;
+}
+
+#pasatiempo {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#guardado_borrado {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#celda_pasatiempo {
+    width: 50%;
+    margin-right: 20px;
+}
+
+#label_pasatiempo {
+    margin: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#pasatiempo input {
+    height: 30px;
+    width: 30px;
+    border-width: 5px;
+    border-radius: 5px;
+    border-color: #5eaaa8;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    outline: none;
+}
+
+#divDerecha {
+    font-size: 20px;
+    color: darkslategray;
+}
+
+#divDerecha>h3 {
+    margin: 0;
+}
+
+#divDerecha>ol {
+    margin-top: 10px;
+}
+
+
+
+#infoPistas {
+    font-weight: bold;
+}
+
+#instrucciones {
+    background-color: #f7f3e9;
+    color: darkslategray;
+    font-size: 20px;
+    padding: 13px;
+    
+}
+
+#instrucciones>h2 {
+    margin-top: 0;
+}
+
+td {
+    padding: 0;
+}
+
+table {
+    border: none;
+}
+
+#tabla_layout {
+    padding: 10px;
+    border-spacing: 40px 0px;
+    background-color: #f7f3e9;
+}
+
+/* Clear floats after the columns */
+
+section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#panel {
+    background-color: #f7f3e9;
+    /*background-image: url("logob.png");*/
+    background-size: 200px;
+    background-blend-mode: luminosity;
+    background-repeat: no-repeat;
+}
+
+#pedirPista input {
+    border-color: #5eaaa8;
+    border-width: 3px;
+    border-radius: 5px;
+    height: 19px;
+    font-weight: bold;
+    outline: none;
+}
+
+.btn {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    outline: none;
+    /* Color del texo */
+    color: #0099CC;
+    /* Eliminar color de fondo */
+    background: transparent;
+    /* Grosor del borde, estilo de línea y color */
+    border: 2px solid #0099CC;
+    /* Añadir esquinas curvadas */
+    border-radius: 6px;
+    /* Poner texto en mayúsculas */
+    border: none;
+    color: white;
+    padding: 5px 4px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    border: 2px solid #f05945;
+}
+
+#btnSearch:disabled{
+    border-color: black;
+    background-color: rgb(185, 185, 185);
+}
+
+/* Al poner el curso encima (hover) */
+
+.btn:hover {
+    border-color: #5eaaa8;
+}
+
+#pistas {
+    margin-top: 10px;
+    height: 130px;
+    width: 300px;
+    border: 2px solid;
+    border-radius: 6px;
+    background-color: white;
+    margin-bottom: 5px;
+    resize: none;
+}
+
+#avisosPista {
+    margin-left: 10px;
+    color: #f05945;
+}
+
+#pistasRestantes {
+    font-size: small;
+}
+
+/*Estilo scrollbar*/
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5eaaa8;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a3d2ca;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Toggle */
+
+/* The switch - the box around the slider */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 23px;
+}
+
+/* Hide default HTML checkbox */
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f05945;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #5eaaa8;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(17px);
+    -ms-transform: translateX(17px);
+    transform: translateX(17px);
+}
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+
+.principal{
+    opacity: .3;
+}
+            
+            
+    
+            .emergente{
+                width:400px;
+                height:200px;
+                position:fixed;
+                background-color:#FFFAFA;
+                top:50%;
+                left:50%;
+                margin-left:-200px;
+                margin-top:-150px;
+                border:1px solid #000;
+                border-radius:10px;
+                padding:20px;
+                text-align:center;
+                box-shadow: 10px 10px 10px #ccc;
+                opacity: 1;
+            }
+            
+            .emergente p{
+                font-size:24px;
+            }
+            
+            .emergente .boton_selector{
+                font-size:18px;
+                padding:10px;
+                border:1px solid #000;
+                border-radius:5px;
+                display:inline-block;
+                width:150px;
+                margin-top:32px;
+                box-shadow:5px 5px 5px #ccc;
+                box-sizing:border-box;
+                margin:13px;
+            }
+            .boton_selector{background-color:#f7f3e9;}
+            .boton_selector:hover{background-color:#a3d2ca;}
