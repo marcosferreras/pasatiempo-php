@@ -326,6 +326,7 @@ input:checked+.slider:before {
                 box-shadow:5px 5px 5px #ccc;
                 box-sizing:border-box;
                 margin:13px;
+                cursor: pointer;
             }
             .boton_selector{background-color:#f7f3e9;}
             .boton_selector:hover{background-color:#a3d2ca;}
