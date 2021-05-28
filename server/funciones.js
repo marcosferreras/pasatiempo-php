@@ -1,4 +1,3 @@
-
 var tabla;
 var diccionario = [];
 var pistasRestantes = 3;
@@ -98,7 +97,7 @@ function cambiarCursor(event) {
     }
 }
 
-function avanzarCelda(event){
+function avanzarCelda(event) {
     elemento = $(event.target).closest('td').next().find('input');
     //Estoy en la última celda escribiendo (No ha conseguido encontrar input)
     if (elemento.get().length === 0) {
@@ -108,7 +107,7 @@ function avanzarCelda(event){
     //elemento.select();
 }
 
-function retrocederCelda(event){
+function retrocederCelda(event) {
     elemento = $(event.target).closest('td').prev().find('input');
     //Estoy en la primera celda borrando (No ha conseguido encontrar input)
     if (elemento.get().length === 0) {
@@ -122,17 +121,20 @@ function comprobarPasatiempo() {
 
     vector_pasatiempo = JSON.stringify(pasatiempo_a_vector());
     $.ajax({
-        method: "POST",
-        url: "check_pasatiempo.php",
-        data: { pasatiempo: vector_pasatiempo, id:id }
-    })
-    .done(function( response ) {
-        console.log(response);
-        let filas_corregidas = JSON.parse(response);
-        filas_corregidas.forEach(function(value, i){
-            cambiarFondoInputTabla(i, value);
+            method: "POST",
+            url: "check_pasatiempo.php",
+            data: {
+                pasatiempo: vector_pasatiempo,
+                id: id
+            }
+        })
+        .done(function (response) {
+            console.log(response);
+            let filas_corregidas = JSON.parse(response);
+            filas_corregidas.forEach(function (value, i) {
+                cambiarFondoInputTabla(i, value);
+            });
         });
-    });
 }
 
 function esFilaCompleta(fila) {
@@ -183,6 +185,7 @@ function escribirFila(fila, palabra) {
         }
     }
 }
+
 function cargarDiccionario() {
     console.log("Cargando diccionario...");
     url = "https://diccionario.casasoladerueda.es/diccionario.txt";
@@ -211,7 +214,7 @@ function cambiarFondoInputTabla(num_fila, tipo) {
     } else if (tipo === 1) {
         color = "#a3d2ca";
     }
-    
+
     let fila = tabla.rows[num_fila];
 
     for (let i = 1; i < fila.cells.length; i++) {
@@ -227,12 +230,13 @@ function cambiarFondoInputTabla(num_fila, tipo) {
 function inicializar() {
     cargarDiccionario();
     generarTabla();
+    mostrarSelectorPasatiempo();
 
 }
 
 function ayuda() {
     let textoEntrada = document.getElementById("ayuda").value;
-    
+
     if (pistasRestantes > 0 && textoEntrada.length > 0) {
 
         //Si contiene un caracter ajeno al abecedario
@@ -259,6 +263,7 @@ function ayuda() {
         document.getElementById("pistasRestantes").innerHTML = "⚠️ ¡Ya no dispones de más pistas!";
     }
 }
+
 function palabraMatch(inputPista, currentValue) {
     let valido = true;
 
@@ -269,6 +274,7 @@ function palabraMatch(inputPista, currentValue) {
     }
     return valido;
 }
+
 function eliminarAcentos(cadena) {
     cadena = cadena.replace(/á/gi, "a");
     cadena = cadena.replace(/é/gi, "e");
@@ -293,11 +299,11 @@ function guardarProgreso() {
         let pistas = document.getElementById("pistas").innerHTML;
         let avisosPista = document.getElementById("avisosPista").innerHTML;
 
-        localStorage.setItem(id + " " +"guardado", guardar);
-        localStorage.setItem(id + " " +"pistasRestantes", pistasRestantes);
-        localStorage.setItem(id + " " +"inputPista", inputPista);
-        localStorage.setItem(id + " " +"pistas", pistas);
-        localStorage.setItem(id + " " +"avisosPista", avisosPista);
+        localStorage.setItem(id + " " + "guardado", guardar);
+        localStorage.setItem(id + " " + "pistasRestantes", pistasRestantes);
+        localStorage.setItem(id + " " + "inputPista", inputPista);
+        localStorage.setItem(id + " " + "pistas", pistas);
+        localStorage.setItem(id + " " + "avisosPista", avisosPista);
     }
 }
 
@@ -305,12 +311,12 @@ function guardarProgreso() {
 function recuperarProgreso() {
     console.log("Recuperando progreso...");
     for (let i = 0; i < tabla.rows.length; i++) {
-        let letra = localStorage.getItem(id+" "+i);
+        let letra = localStorage.getItem(id + " " + i);
         escribirFila(tabla.rows[i], letra);
 
     }
-    guardar = localStorage.getItem(id + " " +"guardado");
-    let auxPistas = localStorage.getItem(id + " " +"pistasRestantes");
+    guardar = localStorage.getItem(id + " " + "guardado");
+    let auxPistas = localStorage.getItem(id + " " + "pistasRestantes");
     if (auxPistas != null) {
         pistasRestantes = auxPistas;
         if (pistasRestantes > 0) {
@@ -320,9 +326,9 @@ function recuperarProgreso() {
             document.getElementById("pistasRestantes").innerHTML = "⚠️ ¡Ya no dispones de más pistas!";
         }
     }
-    let inputPista = localStorage.getItem(id + " " +"inputPista");
-    let pistas = localStorage.getItem(id + " " +"pistas");
-    let avisosPista = localStorage.getItem(id + " " +"avisosPista");
+    let inputPista = localStorage.getItem(id + " " + "inputPista");
+    let pistas = localStorage.getItem(id + " " + "pistas");
+    let avisosPista = localStorage.getItem(id + " " + "avisosPista");
     document.getElementById("ayuda").value = inputPista;
     document.getElementById("pistas").innerHTML = pistas;
     document.getElementById("localStorage").checked = guardar;
@@ -331,13 +337,20 @@ function recuperarProgreso() {
 }
 
 function reiniciarPasatiempo() {
-    generarTabla();
+    limpiarCeldasPasatiempo();
     pistasRestantes = 3;
     document.getElementById("pistasRestantes").innerHTML = "Quedan " + 3 + " pistas";
     document.getElementById("btnSearch").disabled = false;
     document.getElementById("pistas").innerHTML = "";
     document.getElementById("ayuda").value = "";
     document.getElementById("avisosPista").innerHTML = "";
+    localStorage.clear();
+}
+
+function limpiarCeldasPasatiempo(){
+    $('#tabla_layout tr td input').each(function () {
+        $(this).val('');
+    });
 }
 
 function gestionarGuardado() {
@@ -345,53 +358,77 @@ function gestionarGuardado() {
     if (!guardar) {
         localStorage.clear();
     }
-    console.log("Guardado a: " + guardar);
 }
 
-function pasatiempo_a_vector(){
+function pasatiempo_a_vector() {
     vector = []
-     for (let i = 0; i < tabla.rows.length; i++) {
-            fila = tabla.rows[i];
-            palabra = leerFila(fila);
-            vector.push(palabra);
-        }
+    for (let i = 0; i < tabla.rows.length; i++) {
+        fila = tabla.rows[i];
+        palabra = leerFila(fila);
+        vector.push(palabra);
+    }
     return vector;
 }
 
-function seleccionarPasatiempo(event){
+function seleccionarPasatiempo(event) {
+    limpiarCeldasPasatiempo();
     let texto = event.target.textContent;
 
-    if(texto=="Principiante"){
+    if (texto == "Principiante") {
         id = 1;
-    } else if (texto=="Experto"){
+    } else if (texto == "Experto") {
         id = 2;
-    } else if (texto=="Leyenda"){
+    } else if (texto == "Leyenda") {
         id = 3;
     }
     inicializarPistasIniciales();
     recuperarProgreso();
     comprobarPasatiempo();
-    document.getElementsByClassName("principal")[0].style.opacity="1";
-    document.getElementsByClassName("emergente")[0].style.display="none";
+    document.getElementsByClassName("principal")[0].style.opacity = "1";
+    document.getElementsByClassName("emergente")[0].style.display = "none";
+    //$("tr").addClass("");
+    $('#tabla_layout tr td input').each(function () {
+        $(this).removeAttr('readonly');
+    });
 
-
+    $('#tabla_layout tr td button').each(function () {
+        $(this).removeAttr('disabled');
+    });
 }
 
-function inicializarPistasIniciales(){
-    if(id==1){
-        document.getElementById("pista1").innerHTML="Familia en Escocia";
-        document.getElementById("pista2").innerHTML="Tristeza y dolor por algo";
-        document.getElementById("pista3").innerHTML="Termino algo definitivamente";
-        document.getElementById("pista4").innerHTML="El que torea";
-    } else if (id==2){
-        document.getElementById("pista1").innerHTML="Saludo típico a una persona";
-        document.getElementById("pista2").innerHTML="Cantidad indeterminada, generalmente reducida";
-        document.getElementById("pista3").innerHTML="Virus pandémico de 2019";
-        document.getElementById("pista4").innerHTML="Instrumento sonoro típico de un vehículo";
-    } else if (id==3){
-        document.getElementById("pista1").innerHTML="Superficie acotada, que se distingue de lo que la rodea";
-        document.getElementById("pista2").innerHTML="Lo que muchos niños no hacen a sus padres";
-        document.getElementById("pista3").innerHTML="Elemento ortgráfico que se sitúa sobre algunas vocales";
-        document.getElementById("pista4").innerHTML="Empleo de una cosa con un fin determinado";
+
+function mostrarSelectorPasatiempo() {
+    //Guardo progreso antes de cambiar el pasatiempo en caso de que no fuera la primera vez que se abre el selector
+    if(id){
+        guardarProgreso();
+    }
+    document.getElementsByClassName("principal")[0].style.opacity = "0.3";
+    document.getElementsByClassName("emergente")[0].style.display = "inherit";
+
+    $('#tabla_layout tr td input').each(function () {
+        $(this).attr('readonly', 'readonly');
+    });
+
+    $('#tabla_layout tr td button').each(function () {
+        $(this).attr('disabled', 'disabled');
+    });
+}
+
+function inicializarPistasIniciales() {
+    if (id == 1) {
+        document.getElementById("pista1").innerHTML = "Familia en Escocia";
+        document.getElementById("pista2").innerHTML = "Tristeza y dolor por algo";
+        document.getElementById("pista3").innerHTML = "Termino algo definitivamente";
+        document.getElementById("pista4").innerHTML = "El que torea";
+    } else if (id == 2) {
+        document.getElementById("pista1").innerHTML = "Saludo típico a una persona";
+        document.getElementById("pista2").innerHTML = "Cantidad indeterminada, generalmente reducida";
+        document.getElementById("pista3").innerHTML = "Virus pandémico de 2019";
+        document.getElementById("pista4").innerHTML = "Instrumento sonoro típico de un vehículo";
+    } else if (id == 3) {
+        document.getElementById("pista1").innerHTML = "Superficie acotada, que se distingue de lo que la rodea";
+        document.getElementById("pista2").innerHTML = "Lo que muchos niños no hacen a sus padres";
+        document.getElementById("pista3").innerHTML = "Elemento ortográfico que se sitúa sobre algunas vocales";
+        document.getElementById("pista4").innerHTML = "Empleo de una cosa con un fin determinado";
     }
 }

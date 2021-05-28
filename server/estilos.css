@@ -69,8 +69,6 @@ hr {
     margin-top: 10px;
 }
 
-
-
 #infoPistas {
     font-weight: bold;
 }
@@ -80,7 +78,6 @@ hr {
     color: darkslategray;
     font-size: 20px;
     padding: 13px;
-    
 }
 
 #instrucciones>h2 {
@@ -158,7 +155,7 @@ section::after {
     border: 2px solid #f05945;
 }
 
-#btnSearch:disabled{
+#btnSearch:disabled {
     border-color: black;
     background-color: rgb(185, 185, 185);
 }
@@ -283,50 +280,49 @@ input:checked+.slider:before {
     justify-content: center;
 }
 
-
-
-
-
-
-.principal{
+.principal {
     opacity: .3;
 }
-            
-            
-    
-            .emergente{
-                width:400px;
-                height:200px;
-                position:fixed;
-                background-color:#FFFAFA;
-                top:50%;
-                left:50%;
-                margin-left:-200px;
-                margin-top:-150px;
-                border:1px solid #000;
-                border-radius:10px;
-                padding:20px;
-                text-align:center;
-                box-shadow: 10px 10px 10px #ccc;
-                opacity: 1;
-            }
-            
-            .emergente p{
-                font-size:24px;
-            }
-            
-            .emergente .boton_selector{
-                font-size:18px;
-                padding:10px;
-                border:1px solid #000;
-                border-radius:5px;
-                display:inline-block;
-                width:150px;
-                margin-top:32px;
-                box-shadow:5px 5px 5px #ccc;
-                box-sizing:border-box;
-                margin:13px;
-                cursor: pointer;
-            }
-            .boton_selector{background-color:#f7f3e9;}
-            .boton_selector:hover{background-color:#a3d2ca;}
+
+.emergente {
+    width: 400px;
+    height: 200px;
+    position: fixed;
+    background-color: #FFFAFA;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -150px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 10px 10px 10px #ccc;
+    opacity: 1;
+}
+
+.emergente p {
+    font-size: 24px;
+}
+
+.emergente .boton_selector {
+    font-size: 18px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    display: inline-block;
+    width: 150px;
+    margin-top: 32px;
+    box-shadow: 5px 5px 5px #ccc;
+    box-sizing: border-box;
+    margin: 13px;
+    cursor: pointer;
+}
+
+.boton_selector {
+    background-color: #f7f3e9;
+}
+
+.boton_selector:hover {
+    background-color: #a3d2ca;
+}

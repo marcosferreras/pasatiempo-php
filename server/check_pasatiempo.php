@@ -159,7 +159,6 @@ function cargarDiccionario() {
         }
     }
 
-
     fclose($archivo);
 }
 
